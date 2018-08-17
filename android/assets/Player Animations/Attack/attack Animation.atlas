@@ -1,0 +1,76 @@
+
+attack Animation.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_
+  rotate: false
+  xy: 2, 129
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 0
+Attack_
+  rotate: false
+  xy: 2, 2
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 1
+Attack_
+  rotate: false
+  xy: 139, 129
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 2
+Attack_
+  rotate: false
+  xy: 139, 2
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 3
+Attack_
+  rotate: false
+  xy: 276, 129
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 4
+Attack_
+  rotate: false
+  xy: 276, 2
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 5
+Attack_
+  rotate: false
+  xy: 413, 129
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 6
+Attack_
+  rotate: false
+  xy: 413, 2
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 7
+Attack_
+  rotate: false
+  xy: 550, 129
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 8
+Attack_
+  rotate: false
+  xy: 550, 2
+  size: 135, 125
+  orig: 135, 125
+  offset: 0, 0
+  index: 9

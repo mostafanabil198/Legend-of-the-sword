@@ -1,0 +1,76 @@
+
+Jump Throw Animation.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Jump_Throw_
+  rotate: false
+  xy: 2, 129
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 0
+Jump_Throw_
+  rotate: false
+  xy: 2, 2
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 1
+Jump_Throw_
+  rotate: false
+  xy: 108, 129
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 2
+Jump_Throw_
+  rotate: false
+  xy: 108, 2
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 3
+Jump_Throw_
+  rotate: false
+  xy: 214, 129
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 4
+Jump_Throw_
+  rotate: false
+  xy: 214, 2
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 5
+Jump_Throw_
+  rotate: false
+  xy: 320, 129
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 6
+Jump_Throw_
+  rotate: false
+  xy: 320, 2
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 7
+Jump_Throw_
+  rotate: false
+  xy: 426, 129
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 8
+Jump_Throw_
+  rotate: false
+  xy: 426, 2
+  size: 104, 125
+  orig: 104, 125
+  offset: 0, 0
+  index: 9

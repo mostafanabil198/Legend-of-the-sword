@@ -1,0 +1,76 @@
+
+Climb Animation.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Climb
+  rotate: false
+  xy: 2, 129
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 0
+Climb
+  rotate: false
+  xy: 2, 2
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 1
+Climb
+  rotate: false
+  xy: 80, 129
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 2
+Climb
+  rotate: false
+  xy: 80, 2
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 3
+Climb
+  rotate: false
+  xy: 158, 129
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 4
+Climb
+  rotate: false
+  xy: 158, 2
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 5
+Climb
+  rotate: false
+  xy: 236, 129
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 6
+Climb
+  rotate: false
+  xy: 236, 2
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 7
+Climb
+  rotate: false
+  xy: 314, 129
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 8
+Climb
+  rotate: false
+  xy: 314, 2
+  size: 76, 125
+  orig: 76, 125
+  offset: 0, 0
+  index: 9

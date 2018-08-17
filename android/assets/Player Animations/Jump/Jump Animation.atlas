@@ -1,0 +1,76 @@
+
+Jump Animation.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Jump_
+  rotate: false
+  xy: 2, 129
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 0
+Jump_
+  rotate: false
+  xy: 2, 2
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 1
+Jump_
+  rotate: false
+  xy: 98, 129
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 2
+Jump_
+  rotate: false
+  xy: 98, 2
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 3
+Jump_
+  rotate: false
+  xy: 98, 2
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 4
+Jump_
+  rotate: false
+  xy: 98, 2
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 5
+Jump_
+  rotate: false
+  xy: 194, 129
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 6
+Jump_
+  rotate: false
+  xy: 194, 2
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 7
+Jump_
+  rotate: false
+  xy: 290, 129
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 8
+Jump_
+  rotate: false
+  xy: 290, 129
+  size: 94, 125
+  orig: 94, 125
+  offset: 0, 0
+  index: 9

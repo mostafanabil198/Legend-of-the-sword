@@ -1,0 +1,76 @@
+
+Idle Animation.png
+size: 256,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Idle_
+  rotate: false
+  xy: 2, 129
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 0
+Idle_
+  rotate: false
+  xy: 2, 2
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 1
+Idle_
+  rotate: false
+  xy: 2, 2
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 9
+Idle_
+  rotate: false
+  xy: 70, 129
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 2
+Idle_
+  rotate: false
+  xy: 70, 129
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 8
+Idle_
+  rotate: false
+  xy: 70, 2
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 3
+Idle_
+  rotate: false
+  xy: 70, 2
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 7
+Idle_
+  rotate: false
+  xy: 138, 129
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 4
+Idle_
+  rotate: false
+  xy: 138, 129
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 6
+Idle_
+  rotate: false
+  xy: 138, 2
+  size: 66, 125
+  orig: 66, 125
+  offset: 0, 0
+  index: 5

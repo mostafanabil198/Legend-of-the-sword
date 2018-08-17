@@ -1,0 +1,76 @@
+
+Run Animation.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Run_
+  rotate: false
+  xy: 2, 129
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 0
+Run_
+  rotate: false
+  xy: 2, 2
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 1
+Run_
+  rotate: false
+  xy: 103, 129
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 2
+Run_
+  rotate: false
+  xy: 103, 2
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 3
+Run_
+  rotate: false
+  xy: 204, 129
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 4
+Run_
+  rotate: false
+  xy: 204, 2
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 5
+Run_
+  rotate: false
+  xy: 305, 129
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 6
+Run_
+  rotate: false
+  xy: 305, 2
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 7
+Run_
+  rotate: false
+  xy: 406, 129
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 8
+Run_
+  rotate: false
+  xy: 406, 2
+  size: 99, 125
+  orig: 99, 125
+  offset: 0, 0
+  index: 9

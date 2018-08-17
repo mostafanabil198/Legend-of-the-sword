@@ -1,0 +1,76 @@
+
+Slide Animation.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Slide_
+  rotate: false
+  xy: 2, 129
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 0
+Slide_
+  rotate: false
+  xy: 2, 2
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 1
+Slide_
+  rotate: false
+  xy: 137, 129
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 2
+Slide_
+  rotate: false
+  xy: 137, 2
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 3
+Slide_
+  rotate: false
+  xy: 272, 129
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 4
+Slide_
+  rotate: false
+  xy: 272, 2
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 5
+Slide_
+  rotate: false
+  xy: 407, 129
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 6
+Slide_
+  rotate: false
+  xy: 407, 2
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 7
+Slide_
+  rotate: false
+  xy: 542, 129
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 8
+Slide_
+  rotate: false
+  xy: 542, 2
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: 9

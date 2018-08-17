@@ -1,0 +1,76 @@
+
+Glide Animation.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Glide
+  rotate: false
+  xy: 2, 129
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 0
+Glide
+  rotate: false
+  xy: 2, 2
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 1
+Glide
+  rotate: false
+  xy: 126, 129
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 2
+Glide
+  rotate: false
+  xy: 126, 2
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 3
+Glide
+  rotate: false
+  xy: 250, 129
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 4
+Glide
+  rotate: false
+  xy: 250, 2
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 5
+Glide
+  rotate: false
+  xy: 374, 129
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 6
+Glide
+  rotate: false
+  xy: 374, 2
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 7
+Glide
+  rotate: false
+  xy: 498, 129
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 8
+Glide
+  rotate: false
+  xy: 498, 2
+  size: 122, 125
+  orig: 122, 125
+  offset: 0, 0
+  index: 9

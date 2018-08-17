@@ -1,0 +1,76 @@
+
+Dead Animation.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Dead_
+  rotate: false
+  xy: 2, 129
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 0
+Dead_
+  rotate: false
+  xy: 2, 2
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 1
+Dead_
+  rotate: false
+  xy: 125, 129
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 2
+Dead_
+  rotate: false
+  xy: 125, 2
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 3
+Dead_
+  rotate: false
+  xy: 248, 129
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 4
+Dead_
+  rotate: false
+  xy: 248, 2
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 5
+Dead_
+  rotate: false
+  xy: 371, 129
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 6
+Dead_
+  rotate: false
+  xy: 371, 129
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 7
+Dead_
+  rotate: false
+  xy: 371, 129
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 9
+Dead_
+  rotate: false
+  xy: 371, 129
+  size: 121, 125
+  orig: 121, 125
+  offset: 0, 0
+  index: 8
