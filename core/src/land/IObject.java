@@ -1,4 +1,4 @@
-package com.mygdx.game.collision;
+package land;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.physics.box2d.Body;
