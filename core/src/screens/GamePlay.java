@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
@@ -48,32 +47,37 @@ public class GamePlay implements Screen, ContactListener {
     private TiledMap map;
     private MapRenderer mapRenderer;
     private ObjectFactory objectFactory;
+    private MapLayers layers;
+    private MapObjects objects;
 
     public GamePlay(GameMain game) {
         this.game = game;
         world = new World(new Vector2(0, -9.8f), true);
         world.setContactListener(this);
+        player = new Player(world, 1000, 500);
+        //INITALIZE GAME's PLAYGROUND
         map = new TmxMapLoader().load("map/map1.tmx");
         mapRenderer = new MapRenderer(map);
         objectFactory = new ObjectFactory();
-        MapLayers layers = map.getLayers();
-        MapObjects objects = layers.get("col").getObjects();
-        for(MapObject object : objects){
+        layers = map.getLayers();
+        objects = layers.get("col").getObjects();
+        for (MapObject object : objects) {
             objectFactory.createObject(object, world, GameInfo.PPM);
         }
+        mapRenderer.addSprite(player, 3);
         //bg = new Texture("bg.jpg");
+        //MAIN CAMERA FOR ALL THE GAME
         mainCamera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
         mainCamera.position.set(GameInfo.WIDTH / 2f, GameInfo.HEIGHT / 2f, 0);
         gameViewport = new StretchViewport(GameInfo.WIDTH, GameInfo.HEIGHT, mainCamera);
+        //BODIES RENDERER
         box2dCamera = new OrthographicCamera();
         box2dCamera.setToOrtho(false, GameInfo.WIDTH / GameInfo.PPM, GameInfo.HEIGHT / GameInfo.PPM);
         debugRenderer = new Box2DDebugRenderer();
-        player = new Player(world, 1000, 500);
-        mapRenderer.addSprite(player,3);
         //land = new Land(world, 0, 0);
     }
 
-    void forcePlayer() {
+    void inputsHandle() {
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && player.jumpc != 0) {
             player.jumpc = 0;
             player.setAction("Jump");
@@ -118,7 +122,7 @@ public class GamePlay implements Screen, ContactListener {
     @Override
     public void render(float delta) {
         mainCamera.position.set(player.getX() - 50, player.getY() - 50, 0);
-        forcePlayer();
+        inputsHandle();
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
