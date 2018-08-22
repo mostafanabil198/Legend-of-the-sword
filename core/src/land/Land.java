@@ -40,7 +40,7 @@ public class Land extends Sprite {
         bodyDef.position.set((getX()+50)/GameInfo.PPM,getY()/GameInfo.PPM);
         body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(getWidth() /2/ GameInfo.PPM+100, getHeight() /2/ GameInfo.PPM);
+        shape.setAsBox(10000 /2/ GameInfo.PPM, 10/ GameInfo.PPM);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         Fixture fixture = body.createFixture(fixtureDef);

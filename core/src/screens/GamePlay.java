@@ -7,11 +7,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -31,6 +36,8 @@ public class GamePlay implements Screen, ContactListener {
     private Texture bg;
     private Player player;
     private Land land;
+    private Body body;
+    private boolean climb = false;
 
     public GamePlay(GameMain game) {
         this.game = game;
@@ -58,17 +65,24 @@ public class GamePlay implements Screen, ContactListener {
             if (!(player.getBody().getLinearVelocity().x > 2.5f || player.getBody().getLinearVelocity().x < -2.5f)) {
                 player.movePlayer(-.5f, 0);
             }
-
+            if (climb) {
+                world.destroyBody(body);
+                climb = false;
+            }
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             player.right = true;
             player.setAction("Run");
             if (!(player.getBody().getLinearVelocity().x > 2.5f || player.getBody().getLinearVelocity().x < -2.5f)) {
                 player.movePlayer(.5f, 0);
             }
-
+            if (climb) {
+                world.destroyBody(body);
+                climb = false;
+            }
         } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             player.setAction("Climb");
             player.moveClimbPlayer();
+            CreateclimbBody();
         } else if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
             player.setAction("Attack");
 
@@ -84,7 +98,7 @@ public class GamePlay implements Screen, ContactListener {
 
     @Override
     public void render(float delta) {
-        mainCamera.position.set(player.getX(), player.getY(), 0);
+        mainCamera.position.set(player.getX() -50, player.getY() -50, 0);
         forcePlayer();
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -147,5 +161,33 @@ public class GamePlay implements Screen, ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
+    }
+
+    void CreateclimbBody() {
+
+        if (climb) {
+            world.destroyBody(body);
+        }
+        climb = true;
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.position.set((player.getX()) / GameInfo.PPM, (player.getY() - 1) / GameInfo.PPM);
+        body = world.createBody(bodyDef);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(100 / GameInfo.PPM, 2 / GameInfo.PPM);
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        Fixture fixture = body.createFixture(fixtureDef);
+        fixture.setUserData("land");
+        shape.dispose();
+
+    }
+
+    void climbPosition(boolean a) {
+        if (a) {
+            body.getPosition().set((player.getX()) / GameInfo.PPM, (player.getY() - 1) / GameInfo.PPM);
+        } else {
+            body.getPosition().set(-100, -100);
+        }
     }
 }

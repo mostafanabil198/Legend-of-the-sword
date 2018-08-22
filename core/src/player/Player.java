@@ -42,7 +42,7 @@ public class Player extends Sprite {
     private void createBody() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(getX() / GameInfo.PPM, getY() / GameInfo.PPM);
+        bodyDef.position.set((getX() + getWidth()/2 )/ GameInfo.PPM, (getY()+ getHeight()/2) / GameInfo.PPM);
         body = world.createBody(bodyDef);
         body.setFixedRotation(true);
         PolygonShape shape = new PolygonShape();
@@ -71,7 +71,7 @@ public class Player extends Sprite {
             }
         }
         animation = new Animation<TextureRegion>(1 / 10f, playerAtlas.getRegions());
-        batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY());
+        batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY() - getHeight()/2);
     }
 
     public void movePlayer(float x, float y) {
@@ -98,7 +98,7 @@ public class Player extends Sprite {
     }
 
     public void updatePlayer() {
-        setPosition(body.getPosition().x * GameInfo.PPM, body.getPosition().y * GameInfo.PPM);
+        setPosition((body.getPosition().x * GameInfo.PPM) - getWidth()/2, (body.getPosition().y * GameInfo.PPM) - getHeight()/2);
     }
 
 
