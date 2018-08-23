@@ -42,7 +42,7 @@ public class Player extends Sprite {
     private void createBody() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set((getX() + getWidth()/2 )/ GameInfo.PPM, (getY()+ getHeight()/2) / GameInfo.PPM);
+        bodyDef.position.set((getX() + getWidth() / 2) / GameInfo.PPM, (getY() + getHeight() / 2) / GameInfo.PPM);
         body = world.createBody(bodyDef);
         body.setFixedRotation(true);
         PolygonShape shape = new PolygonShape();
@@ -50,6 +50,8 @@ public class Player extends Sprite {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 4f;
+        fixtureDef.filter.categoryBits = GameInfo.PLAYER;
+        fixtureDef.filter.maskBits = GameInfo.STAIR | GameInfo.DOOR;
         //fixtureDef.friction = 2f;
         Fixture fixture = body.createFixture(fixtureDef);
         fixture.setUserData("player");
@@ -71,7 +73,7 @@ public class Player extends Sprite {
             }
         }
         animation = new Animation<TextureRegion>(1 / 10f, playerAtlas.getRegions());
-        batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY() - getHeight()/2);
+        batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY() - getHeight() / 2);
     }
 
     public void movePlayer(float x, float y) {
@@ -81,7 +83,7 @@ public class Player extends Sprite {
             this.flip(true, false);
         }
         //body.setLinearVelocity(x, y);
-        body.applyLinearImpulse(new Vector2(x,y),body.getWorldCenter(),true);
+        body.applyLinearImpulse(new Vector2(x, y), body.getWorldCenter(), true);
         //body.applyLinearImpulse(new Vector2(x, y), body.getWorldCenter(), true);
 
     }
@@ -98,7 +100,7 @@ public class Player extends Sprite {
     }
 
     public void updatePlayer() {
-        setPosition((body.getPosition().x * GameInfo.PPM) - getWidth()/2, (body.getPosition().y * GameInfo.PPM) - getHeight()/2);
+        setPosition((body.getPosition().x * GameInfo.PPM) - getWidth() / 2, (body.getPosition().y * GameInfo.PPM) - getHeight() / 2);
     }
 
 

@@ -20,7 +20,7 @@ public class ObjectFactory {
             s.setPPM(ppm);
             s.create();
             return s;
-        } else if (object.getName().equals("stair")) {
+        } else if (object.getName().equals("door")) {
             Door d = new Door();
             d.setObject(object);
             d.setWorld(world);

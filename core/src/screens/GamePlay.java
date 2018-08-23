@@ -49,6 +49,7 @@ public class GamePlay implements Screen, ContactListener {
     private ObjectFactory objectFactory;
     private MapLayers layers;
     private MapObjects objects;
+    private boolean climbStair = false;
 
     public GamePlay(GameMain game) {
         this.game = game;
@@ -88,7 +89,7 @@ public class GamePlay implements Screen, ContactListener {
             if (!(player.getBody().getLinearVelocity().x > 2.5f || player.getBody().getLinearVelocity().x < -2.5f)) {
                 player.movePlayer(-.5f, 0);
             }
-            if (climb) {
+            if (climb && !climbStair) {
                 world.destroyBody(body);
                 climb = false;
             }
@@ -98,11 +99,11 @@ public class GamePlay implements Screen, ContactListener {
             if (!(player.getBody().getLinearVelocity().x > 2.5f || player.getBody().getLinearVelocity().x < -2.5f)) {
                 player.movePlayer(.5f, 0);
             }
-            if (climb) {
+            if (climb && !climbStair) {
                 world.destroyBody(body);
                 climb = false;
             }
-        } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.UP) && climbStair) {
             player.setAction("Climb");
             player.moveClimbPlayer();
             CreateclimbBody();
@@ -165,14 +166,23 @@ public class GamePlay implements Screen, ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        if (contact.getFixtureA().getUserData() == "player" && contact.getFixtureB().getUserData() == "land") {
+        if (contact.getFixtureA().getUserData() == "player" && contact.getFixtureB().getUserData() == "brick") {
             player.jumpc = 1;
+            climbStair = false;
         }
         if (contact.getFixtureA().getUserData() == "brick" && contact.getFixtureB().getUserData() == "player") {
             player.jumpc = 1;
+            climbStair = false;
         }
         if (contact.getFixtureA().getUserData() == "stair" && contact.getFixtureB().getUserData() == "player") {
             //check if the up button is pressed and apply the climbing action
+            player.jumpc = 1;
+            climbStair = true;
+        }
+        if (contact.getFixtureA().getUserData() == "player" && contact.getFixtureB().getUserData() == "stair") {
+            //check if the up button is pressed and apply the climbing action
+            player.jumpc = 1;
+            climbStair = true;
         }
         if (contact.getFixtureA().getUserData() == "door" && contact.getFixtureB().getUserData() == "player") {
             /*
@@ -184,11 +194,20 @@ public class GamePlay implements Screen, ContactListener {
             }
             */
         }
+        if (contact.getFixtureA().getUserData() == "player" && contact.getFixtureB().getUserData() == "door") {
+            /*
+            if(player has the key){
+                layers.remove(layers.get("door")); // remove the layer that contains the door
+                world.destroyBody(contact.getFixtureA().getBody()); // destroy the body
+            } else {
+                player.jumpc = 1;
+            }
+            */
+        }
     }
 
     @Override
     public void endContact(Contact contact) {
-
     }
 
     @Override
@@ -202,7 +221,6 @@ public class GamePlay implements Screen, ContactListener {
     }
 
     void CreateclimbBody() {
-
         if (climb) {
             world.destroyBody(body);
         }
@@ -212,7 +230,7 @@ public class GamePlay implements Screen, ContactListener {
         bodyDef.position.set((player.getX()) / GameInfo.PPM, (player.getY() - 1) / GameInfo.PPM);
         body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(100 / GameInfo.PPM, 2 / GameInfo.PPM);
+        shape.setAsBox(player.getWidth() / 4 / GameInfo.PPM, 1 / GameInfo.PPM);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         Fixture fixture = body.createFixture(fixtureDef);
@@ -221,11 +239,4 @@ public class GamePlay implements Screen, ContactListener {
 
     }
 
-    void climbPosition(boolean a) {
-        if (a) {
-            body.getPosition().set((player.getX()) / GameInfo.PPM, (player.getY() - 1) / GameInfo.PPM);
-        } else {
-            body.getPosition().set(-100, -100);
-        }
-    }
 }
