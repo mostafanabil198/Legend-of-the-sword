@@ -171,6 +171,19 @@ public class GamePlay implements Screen, ContactListener {
         if (contact.getFixtureA().getUserData() == "brick" && contact.getFixtureB().getUserData() == "player") {
             player.jumpc = 1;
         }
+        if (contact.getFixtureA().getUserData() == "stair" && contact.getFixtureB().getUserData() == "player") {
+            //check if the up button is pressed and apply the climbing action
+        }
+        if (contact.getFixtureA().getUserData() == "door" && contact.getFixtureB().getUserData() == "player") {
+            /*
+            if(player has the key){
+                layers.remove(layers.get("door")); // remove the layer that contains the door 
+                world.destroyBody(contact.getFixtureA().getBody()); // destroy the body
+            } else {
+                player.jumpc = 1;
+            }
+            */
+        }
     }
 
     @Override

@@ -13,13 +13,20 @@ public class ObjectFactory {
             b.setPPM(ppm);
             b.create();
             return b;
-        } else if (object.getName().equals("stairs")) {
+        } else if (object.getName().equals("stair")) {
             Stairs s = new Stairs();
             s.setObject(object);
             s.setWorld(world);
             s.setPPM(ppm);
             s.create();
             return s;
+        } else if (object.getName().equals("stair")) {
+            Door d = new Door();
+            d.setObject(object);
+            d.setWorld(world);
+            d.setPPM(ppm);
+            d.create();
+            return d;
         }
         return null;
     }
