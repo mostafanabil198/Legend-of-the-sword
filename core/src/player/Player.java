@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -59,7 +60,7 @@ public class Player extends Sprite {
     }
 
 
-    public void drawPlayer(SpriteBatch batch) {
+    public void drawPlayer(Batch batch) {
         TextureAtlas temp = playerAtlas;
         temp.dispose();
         playerAtlas = new TextureAtlas("Player Animations/" + action + "/" + action + " Animation.atlas");
@@ -73,7 +74,7 @@ public class Player extends Sprite {
             }
         }
         animation = new Animation<TextureRegion>(1 / 10f, playerAtlas.getRegions());
-        batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY() - getHeight() / 2);
+        batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY());
     }
 
     public void movePlayer(float x, float y) {

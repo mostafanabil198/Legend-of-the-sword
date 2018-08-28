@@ -65,7 +65,7 @@ public class GamePlay implements Screen, ContactListener {
         for (MapObject object : objects) {
             objectFactory.createObject(object, world, GameInfo.PPM);
         }
-        mapRenderer.addSprite(player, 3);
+        mapRenderer.addSprite(player, 3,game);
         //bg = new Texture("bg.jpg");
         //MAIN CAMERA FOR ALL THE GAME
         mainCamera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
@@ -130,7 +130,7 @@ public class GamePlay implements Screen, ContactListener {
         //game.getBatch().draw(bg, 0, 0);
         mapRenderer.setView(mainCamera);
         mapRenderer.render();
-        player.drawPlayer(game.getBatch());
+//        player.drawPlayer(game.getBatch());
 //        land.drawPlayer(game.getBatch());
         game.getBatch().end();
         debugRenderer.render(world, box2dCamera.combined);

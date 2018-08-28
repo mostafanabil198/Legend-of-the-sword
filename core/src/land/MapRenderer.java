@@ -8,22 +8,29 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
+import com.mygdx.game.GameMain;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import player.Player;
 
 public class MapRenderer extends OrthogonalTiledMapRenderer {
     private Sprite sprite;
     private List<Sprite> sprites;
     private int drawSpritesAfterLayer = 3;
+    private Player player;
+    private GameMain game;
 
     public MapRenderer(TiledMap map) {
         super(map);
         sprites = new ArrayList<Sprite>();
     }
 
-    public void addSprite(Sprite sprite, int drawSpritesAfterLayer){
+    public void addSprite(Sprite sprite, int drawSpritesAfterLayer, GameMain game) {
         sprites.add(sprite);
+        player = (Player) sprite;
+        this.game = game;
         this.drawSpritesAfterLayer = drawSpritesAfterLayer;
     }
 
@@ -34,11 +41,12 @@ public class MapRenderer extends OrthogonalTiledMapRenderer {
         for (MapLayer layer : map.getLayers()) {
             if (layer.isVisible()) {
                 if (layer instanceof TiledMapTileLayer) {
-                    renderTileLayer(((TiledMapTileLayer)layer));
+                    renderTileLayer(((TiledMapTileLayer) layer));
                     currentLayer++;
-                    if(currentLayer == drawSpritesAfterLayer){
-                        for(Sprite sprite : sprites)
-                            sprite.draw(this.getBatch());
+                    if (currentLayer == drawSpritesAfterLayer) {
+//                        for(Sprite sprite : sprites)
+//                            sprite.draw(this.getBatch());
+                        player.drawPlayer(this.getBatch());
                     }
                 } else {
                     for (MapObject object : layer.getObjects()) {
@@ -49,5 +57,5 @@ public class MapRenderer extends OrthogonalTiledMapRenderer {
         }
         endRender();
     }
-    
+
 }
