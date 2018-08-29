@@ -65,7 +65,7 @@ public class GamePlay implements Screen, ContactListener {
         for (MapObject object : objects) {
             objectFactory.createObject(object, world, GameInfo.PPM);
         }
-        mapRenderer.addSprite(player, 3,game);
+        mapRenderer.addSprite(player, 3, game);
         //bg = new Texture("bg.jpg");
         //MAIN CAMERA FOR ALL THE GAME
         mainCamera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
@@ -115,6 +115,19 @@ public class GamePlay implements Screen, ContactListener {
         }
     }
 
+    private void updateCamera() {
+        //x: 996.0813 y: 432.82983
+
+        if (player.getX() - 50 > 996.0813 && player.getX() - 50 < 2204.633) {
+            mainCamera.position.set(player.getX() - 50, mainCamera.position.y, 0);
+        }
+        if (player.getY() - 50 > 368.92964 && player.getY() - 50 < 1231.3258) {
+            mainCamera.position.set(mainCamera.position.x, player.getY() - 50, 0);
+        }
+
+       // System.out.println("x: " + (player.getX() - 50) + " y: " + (player.getY() - 50));
+    }
+
     @Override
     public void show() {
 
@@ -122,7 +135,7 @@ public class GamePlay implements Screen, ContactListener {
 
     @Override
     public void render(float delta) {
-        mainCamera.position.set(player.getX() - 50, player.getY() - 50, 0);
+        updateCamera();
         inputsHandle();
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
