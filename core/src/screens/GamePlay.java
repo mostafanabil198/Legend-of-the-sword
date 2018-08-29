@@ -31,6 +31,7 @@ import land.Land;
 import land.MapRenderer;
 import land.ObjectFactory;
 import player.Player;
+import weapons.Sword;
 
 public class GamePlay implements Screen, ContactListener {
     private GameMain game;
@@ -42,7 +43,7 @@ public class GamePlay implements Screen, ContactListener {
     //private Texture bg;
     private Player player;
     private Land land;
-    private Body body;
+    private Body bodyWhenClimb;
     private boolean climb = false;
     private TiledMap map;
     private MapRenderer mapRenderer;
@@ -50,6 +51,8 @@ public class GamePlay implements Screen, ContactListener {
     private MapLayers layers;
     private MapObjects objects;
     private boolean climbStair = false;
+    private Sword sword;
+    private int renderCounter;
 
     public GamePlay(GameMain game) {
         this.game = game;
@@ -75,6 +78,7 @@ public class GamePlay implements Screen, ContactListener {
         box2dCamera = new OrthographicCamera();
         box2dCamera.setToOrtho(false, GameInfo.WIDTH / GameInfo.PPM, GameInfo.HEIGHT / GameInfo.PPM);
         debugRenderer = new Box2DDebugRenderer();
+        sword = new Sword(world, game, player);
         //land = new Land(world, 0, 0);
     }
 
@@ -90,7 +94,7 @@ public class GamePlay implements Screen, ContactListener {
                 player.movePlayer(-.5f, 0);
             }
             if (climb && !climbStair) {
-                world.destroyBody(body);
+                world.destroyBody(bodyWhenClimb);
                 climb = false;
             }
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
@@ -100,15 +104,20 @@ public class GamePlay implements Screen, ContactListener {
                 player.movePlayer(.5f, 0);
             }
             if (climb && !climbStair) {
-                world.destroyBody(body);
+                world.destroyBody(bodyWhenClimb);
                 climb = false;
             }
         } else if (Gdx.input.isKeyPressed(Input.Keys.UP) && climbStair) {
             player.setAction("Climb");
             player.moveClimbPlayer();
             CreateclimbBody();
-        } else if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT)) {
             player.setAction("Attack");
+            if (player.right) {
+                sword.createSwordRight();
+            } else if (!player.right) {
+                sword.createSwordLeft();
+            }
 
         } else if (player.jumpc == 1) {
             player.setAction("Idle");
@@ -125,7 +134,7 @@ public class GamePlay implements Screen, ContactListener {
             mainCamera.position.set(mainCamera.position.x, player.getY() - 50, 0);
         }
 
-       // System.out.println("x: " + (player.getX() - 50) + " y: " + (player.getY() - 50));
+        // System.out.println("x: " + (player.getX() - 50) + " y: " + (player.getY() - 50));
     }
 
     @Override
@@ -135,6 +144,7 @@ public class GamePlay implements Screen, ContactListener {
 
     @Override
     public void render(float delta) {
+        renderCounter++;
         updateCamera();
         inputsHandle();
         Gdx.gl.glClearColor(1, 0, 0, 1);
@@ -150,6 +160,12 @@ public class GamePlay implements Screen, ContactListener {
         game.getBatch().setProjectionMatrix(mainCamera.combined);
         mainCamera.update();
         player.updatePlayer();
+        if (renderCounter == 2) {
+            renderCounter = 0;
+            if (sword.isCreated()) {
+                sword.dispose();
+            }
+        }
         world.step(Gdx.graphics.getDeltaTime(), 6, 2);
     }
 
@@ -197,11 +213,25 @@ public class GamePlay implements Screen, ContactListener {
             player.jumpc = 1;
             climbStair = true;
         }
+
+        if (contact.getFixtureA().getUserData() == "sword" && contact.getFixtureB().getUserData() == "brick") {
+            if (player.getBody().getPosition().y == contact.getFixtureB().getBody().getPosition().y) {
+                System.out.println("hit");
+            }
+        }
+        if (contact.getFixtureB().getUserData() == "sword" && contact.getFixtureA().getUserData() == "brick") {
+            if (player.getBody().getPosition().y == contact.getFixtureB().getBody().getPosition().y) {
+                System.out.println("hit");
+            }
+
+        }
+
+
         if (contact.getFixtureA().getUserData() == "door" && contact.getFixtureB().getUserData() == "player") {
             /*
             if(player has the key){
                 layers.remove(layers.get("door")); // remove the layer that contains the door 
-                world.destroyBody(contact.getFixtureA().getBody()); // destroy the body
+                world.destroyBody(contact.getFixtureA().getBody()); // destroy the bodyWhenClimb
             } else {
                 player.jumpc = 1;
             }
@@ -211,7 +241,7 @@ public class GamePlay implements Screen, ContactListener {
             /*
             if(player has the key){
                 layers.remove(layers.get("door")); // remove the layer that contains the door
-                world.destroyBody(contact.getFixtureA().getBody()); // destroy the body
+                world.destroyBody(contact.getFixtureA().getBody()); // destroy the bodyWhenClimb
             } else {
                 player.jumpc = 1;
             }
@@ -235,18 +265,18 @@ public class GamePlay implements Screen, ContactListener {
 
     void CreateclimbBody() {
         if (climb) {
-            world.destroyBody(body);
+            world.destroyBody(bodyWhenClimb);
         }
         climb = true;
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set((player.getX()) / GameInfo.PPM, (player.getY() - 1) / GameInfo.PPM);
-        body = world.createBody(bodyDef);
+        bodyWhenClimb = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(player.getWidth() / 4 / GameInfo.PPM, 1 / GameInfo.PPM);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
-        Fixture fixture = body.createFixture(fixtureDef);
+        Fixture fixture = bodyWhenClimb.createFixture(fixtureDef);
         fixture.setUserData("land");
         shape.dispose();
 

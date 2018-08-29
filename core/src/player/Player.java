@@ -30,6 +30,7 @@ public class Player extends Sprite {
     private float elapsedTime;
     public int jumpc = 1;
     public boolean right = true;
+    private  Fixture fixture;
 
     public Player(World world, float x, float y) {
 
@@ -54,7 +55,7 @@ public class Player extends Sprite {
         fixtureDef.filter.categoryBits = GameInfo.PLAYER;
         fixtureDef.filter.maskBits = GameInfo.STAIR | GameInfo.DOOR;
         //fixtureDef.friction = 2f;
-        Fixture fixture = body.createFixture(fixtureDef);
+        fixture = body.createFixture(fixtureDef);
         fixture.setUserData("player");
         shape.dispose();
     }
@@ -74,7 +75,11 @@ public class Player extends Sprite {
             }
         }
         animation = new Animation<TextureRegion>(1 / 10f, playerAtlas.getRegions());
-        batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY());
+        if (action != "Attack" || (action == "Attack" && right)) {
+            batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY());
+        } else {
+            batch.draw(animation.getKeyFrame(elapsedTime, true), getX() - getWidth(), getY());
+        }
     }
 
     public void movePlayer(float x, float y) {
@@ -115,5 +120,9 @@ public class Player extends Sprite {
 
     public void setBody(Body body) {
         this.body = body;
+    }
+
+    public Fixture getFixture(){
+        return fixture;
     }
 }

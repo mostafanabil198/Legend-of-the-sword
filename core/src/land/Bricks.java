@@ -17,14 +17,17 @@ public class Bricks implements IObject {
     private MapObject object;
     private World world;
     private float ppm;
+
     @Override
     public void setObject(MapObject object) {
         this.object = object;
     }
+
     @Override
     public void setWorld(World world) {
         this.world = world;
     }
+
     @Override
     public Body create() {
         Rectangle rect = ((RectangleMapObject) object).getRectangle();
@@ -44,10 +47,11 @@ public class Bricks implements IObject {
         shape.dispose();
         return body;
     }
+
     @Override
     public void setPPM(float ppm) {
         this.ppm = ppm;
-        
+
     }
 
 }
