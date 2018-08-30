@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import player.Player;
+import weapons.BulletController;
 
 public class MapRenderer extends OrthogonalTiledMapRenderer {
     private Sprite sprite;
@@ -21,24 +22,28 @@ public class MapRenderer extends OrthogonalTiledMapRenderer {
     private int drawSpritesAfterLayer = 3;
     private Player player;
     private GameMain game;
+    private BulletController bulletController;
 
     public MapRenderer(TiledMap map) {
         super(map);
         sprites = new ArrayList<Sprite>();
     }
 
-    public void addSprite(Sprite sprite, int drawSpritesAfterLayer, GameMain game) {
+    public void addSprite(Sprite sprite, int drawSpritesAfterLayer, GameMain game, BulletController bulletController) {
         sprites.add(sprite);
         player = (Player) sprite;
         this.game = game;
         this.drawSpritesAfterLayer = drawSpritesAfterLayer;
+        this.bulletController = bulletController;
     }
 
     @Override
     public void render() {
         beginRender();
         int currentLayer = 0;
+
         for (MapLayer layer : map.getLayers()) {
+            bulletController.drawBullets(game.getBatch());
             if (layer.isVisible()) {
                 if (layer instanceof TiledMapTileLayer) {
                     renderTileLayer(((TiledMapTileLayer) layer));
@@ -47,6 +52,7 @@ public class MapRenderer extends OrthogonalTiledMapRenderer {
 //                        for(Sprite sprite : sprites)
 //                            sprite.draw(this.getBatch());
                         player.drawPlayer(this.getBatch());
+
                     }
                 } else {
                     for (MapObject object : layer.getObjects()) {

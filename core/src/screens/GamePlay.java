@@ -31,6 +31,7 @@ import land.Land;
 import land.MapRenderer;
 import land.ObjectFactory;
 import player.Player;
+import weapons.BulletController;
 import weapons.Sword;
 
 public class GamePlay implements Screen, ContactListener {
@@ -53,12 +54,14 @@ public class GamePlay implements Screen, ContactListener {
     private boolean climbStair = false;
     private Sword sword;
     private int renderCounter;
+    private BulletController bulletController;
 
     public GamePlay(GameMain game) {
         this.game = game;
         world = new World(new Vector2(0, -9.8f), true);
         world.setContactListener(this);
         player = new Player(world, 1000, 500);
+        bulletController = new BulletController(world);
         //INITALIZE GAME's PLAYGROUND
         map = new TmxMapLoader().load("map/map1.tmx");
         mapRenderer = new MapRenderer(map);
@@ -68,7 +71,7 @@ public class GamePlay implements Screen, ContactListener {
         for (MapObject object : objects) {
             objectFactory.createObject(object, world, GameInfo.PPM);
         }
-        mapRenderer.addSprite(player, 3, game);
+        mapRenderer.addSprite(player, 3, game,bulletController);
         //bg = new Texture("bg.jpg");
         //MAIN CAMERA FOR ALL THE GAME
         mainCamera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
@@ -79,6 +82,7 @@ public class GamePlay implements Screen, ContactListener {
         box2dCamera.setToOrtho(false, GameInfo.WIDTH / GameInfo.PPM, GameInfo.HEIGHT / GameInfo.PPM);
         debugRenderer = new Box2DDebugRenderer();
         sword = new Sword(world, game, player);
+
         //land = new Land(world, 0, 0);
     }
 
@@ -119,6 +123,12 @@ public class GamePlay implements Screen, ContactListener {
                 sword.createSwordLeft();
             }
 
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ALT_LEFT)) {
+            if (Gdx.input.getX() - (player.getX() + player.getWidth() / 2f) >= 0) {
+                bulletController.AddBullets(player.getX() + player.getWidth() + 30, player.getY() + player.getHeight() / 2, 1);
+            } else if (Gdx.input.getX() - (player.getX() + player.getWidth() / 2f) < 0) {
+                bulletController.AddBullets(player.getX() - 30, player.getY() + player.getHeight() / 2, -1);
+            }
         } else if (player.jumpc == 1) {
             player.setAction("Idle");
         }
@@ -147,12 +157,14 @@ public class GamePlay implements Screen, ContactListener {
         renderCounter++;
         updateCamera();
         inputsHandle();
+        bulletController.updateBullets();
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
         //game.getBatch().draw(bg, 0, 0);
         mapRenderer.setView(mainCamera);
         mapRenderer.render();
+
 //        player.drawPlayer(game.getBatch());
 //        land.drawPlayer(game.getBatch());
         game.getBatch().end();
